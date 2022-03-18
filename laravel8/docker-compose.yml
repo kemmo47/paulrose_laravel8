@@ -8,13 +8,12 @@ services:
     image: nginx:stable-alpine
     container_name: nginx
     ports:
-      - "8080:80"
+      - "80:80"
     volumes: 
       - ./src:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on: 
       - php
-      - mysql
     networks:
       - laravel
 
@@ -46,5 +45,17 @@ services:
       - ./src:/var/www/html
     ports:
       - "9000:9000"
+    depends_on: 
+      - mysql
+      - composer_installation
+    networks:
+      - laravel
+
+  composer_installation:
+    container_name: composer_installation
+    image: composer
+    volumes:
+      - ./src:/app
+    command: composer install --ignore-platform-reqs
     networks:
       - laravel
