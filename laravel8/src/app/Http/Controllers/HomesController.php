@@ -26,10 +26,10 @@ class HomesController extends Controller
         foreach($category as $cate){
             if(Str::slug($cate->category_name) == $slug){
                 $catepro = Category::where('category_name',$cate->category_name)->first();
-                
+
                 if(isset($_GET['sort_by'])){
                     $sort_by = $_GET['sort_by'];
-        
+
                     if($sort_by == 'price-descending'){
                         $product = Product::with('gallery')->where('category_id', $catepro->category_id)->orderBy('product_price', 'DESC')->get()->append(request()->query());
                     }elseif($sort_by == 'price-ascending'){
@@ -46,7 +46,7 @@ class HomesController extends Controller
                 }else{
                     $product = Product::where('category_id',$catepro->category_id)->with('gallery')->get()->append(request()->query());
                 }
-        
+
             }
         }
 
@@ -132,7 +132,7 @@ class HomesController extends Controller
                                 </ul>
                             </div>';
             }
-            
+
         }else{
             $output .= '<div class="text-center">Cần nhập từ khóa để tìm kiếm</div>';
         }

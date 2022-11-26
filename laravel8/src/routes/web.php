@@ -28,7 +28,7 @@ Route::get('/', [HomesController::class, 'home']);
 Route::get('/test', [HomesController::class, 'test']);
 //show product category
 Route::get('/collections/{slug}', [HomesController::class, 'product_with_category']);
-Route::get('/collections/{slug}', [HomesController::class, 'product_with_category']);
+Route::get('/collections/{slug}/{id}', [HomesController::class, 'product_with_subcategory']);
 Route::post('/search-keywords', [HomesController::class, 'search_keywords']);
 
 Route::post('/search-item', [HomesController::class, 'search_item']);
@@ -68,7 +68,7 @@ Route::post('/show-related-product', [DetailsProductController::class, 'show_rel
         Route::post('/delete-product', [ProductController::class, 'delete_product']);
         //gallery controller
         Route::get('/add-gallery-product/{product_id}', [GalleryController::class, 'add_gallery']);
-        
+
         Route::post('/insert-gallery-product', [GalleryController::class, 'insert_gallery_product']);
         Route::post('/delete-gallery', [GalleryController::class, 'delete_gallery']);
         Route::post('/delete-all-gallery', [GalleryController::class, 'delete_all_gallery']);
